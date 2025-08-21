@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SANIJA‑MD • Ultimate WhatsApp Bot</title>
+  <meta name="description" content="SANIJA‑MD — A powerful WhatsApp bot with automation, media tools, and interactive commands. Pair your session and deploy in minutes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          colors: {
+            navy: { 950:'#070d1a', 900: '#0a1124', 850:'#0c1730', 800: '#0e1b3a', 700: '#142955', 600: '#1a366f', 500: '#214488' },
+            brand: { 300:'#6ddcff', 400: '#4fb3ff', 500: '#2b99ff', 600: '#1877ff' }
+          },
+          boxShadow: {
+            glow: '0 0 0 4px rgb(43 153 255 / 18%), 0 20px 60px rgb(43 153 255 / 25)'
+          },
+          keyframes: {
+            float: { '0%,100%':{ transform:'translateY(0)' }, '50%':{ transform:'translateY(-8px)' } },
+            shine: { '0%':{backgroundPosition:'0% 50%'}, '100%':{backgroundPosition:'200% 50%'} }
+          },
+          animation: { float: 'float 6s ease-in-out infinite', shine: 'shine 10s linear infinite' }
+        }
+      }
+    }
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif}
+    .glass{backdrop-filter: blur(14px); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08)}
+    .grad{background: linear-gradient(90deg,#2b99ff,#6ddcff,#2b99ff); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .bg-grid{background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 26px 26px}
+  </style>
+  <script src="https://unpkg.com/three@0.160.1/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.160.1/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body class="min-h-screen bg-[radial-gradient(1200px_600px_at_70%_-10%,rgba(24,119,255,.18),transparent),radial-gradient(900px_500px_at_10%_10%,rgba(21,67,152,.28),transparent)] bg-navy-900 text-white">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-navy-900/80 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-3">
+        <div class="h-10 w-10 grid place-items-center rounded-2xl bg-brand-500/20 text-brand-400 shadow-glow">🤖</div>
+        <span class="font-extrabold tracking-tight text-lg">SANIJA‑MD</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
+        <a href="#hero" class="hover:text-white">Home</a>
+        <a href="#features" class="hover:text-white">Features</a>
+        <a href="#live" class="hover:text-white">3D</a>
+        <a href="#how" class="hover:text-white">How</a>
+        <a href="#usecases" class="hover:text-white">Use‑cases</a>
+        <a href="#screens" class="hover:text-white">Screens</a>
+        <a href="#pair" class="hover:text-white">Pair</a>
+        <a href="#deploy" class="hover:text-white">Deploy</a>
+        <a href="#faq" class="hover:text-white">FAQ</a>
+        <a href="#comments" class="hover:text-white">Comments</a>
+      </nav>
+      <a href="#pair" class="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold hover:bg-brand-600 transition shadow-glow">Get Pair Code</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-800 to-navy-900"></div>
+    <div class="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-brand-500/10 blur-3xl"></div>
+    <div class="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-brand-300/10 blur-3xl"></div>
+    <div class="relative max-w-7xl mx-auto px-4 pt-24 pb-16 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight grad">SANIJA‑MD</h1>
+        <p class="text-white/80 mt-4 text-lg">The ultimate WhatsApp bot with automation, media tools, rich commands, and admin superpowers. Connect instantly. Moderate smarter. Have fun.</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#pair" class="px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 font-semibold shadow-glow">Generate Pair Code</a>
+          <a href="#features" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10">Explore Features</a>
+        </div>
+        <div class="mt-6 flex items-center gap-4 text-white/60 text-sm">
+          <span>⚡ Fast setup</span><span>•</span><span>🔒 Secure session</span><span>•</span><span>🛠️ 50+ commands</span>
+        </div>
+      </div>
+      <div class="glass rounded-3xl p-4 md:p-6 shadow-glow animate-float">
+        <div id="threeContainer" class="w-full h-[420px] rounded-2xl bg-navy-800"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="max-w-7xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold text-center grad mb-12">✨ What You Get</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="text-xl font-semibold mb-2">🎵 Media Tools</h3>
+        <p class="text-white/70">YouTube/TikTok downloaders, audio filters, stickers, to‑MP3 & more.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="text-xl font-semibold mb-2">🛡️ Moderation</h3>
+        <p class="text-white/70">Anti‑spam, welcome messages, slowmode, auto‑warn, anti‑link.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="text-xl font-semibold mb-2">🤖 Automation</h3>
+        <p class="text-white/70">Scheduler, auto‑reply, AI helpers, custom triggers & menus.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="text-xl font-semibold mb-2">📦 Plugins</h3>
+        <p class="text-white/70">Drop‑in command packs you can enable/disable without redeploy.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="text-xl font-semibold mb-2">📈 Stats</h3>
+        <p class="text-white/70">Live usage dashboards and per‑group analytics.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <h3 class="text-xl font-semibold mb-2">🔐 Secure Session</h3>
+        <p class="text-white/70">Session isolation, local persistence, quick re‑pair if expired.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D PREVIEW -->
+  <section id="live" class="max-w-7xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold text-center grad mb-12">📱 Live 3D Preview</h2>
+    <p class="text-center text-white/70 max-w-3xl mx-auto mb-8">Spin and inspect the phone. The glowing screen hints at incoming WhatsApp events and bot responses.</p>
+    <div id="threeCanvasWide" class="w-full h-[420px] rounded-2xl shadow-glow bg-navy-800"></div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="max-w-7xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold text-center grad mb-12">⚙️ How It Works</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-6 rounded-2xl text-center">
+        <h3 class="text-lg font-semibold">1) Pair</h3>
+        <p class="text-white/70">Open the pairing portal and scan the QR with your WhatsApp.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl text-center">
+        <h3 class="text-lg font-semibold">2) Configure</h3>
+        <p class="text-white/70">Toggle plugins, set admin roles, pick automation you want.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl text-center">
+        <h3 class="text-lg font-semibold">3) Go Live</h3>
+        <p class="text-white/70">Deploy or keep a local session running. Your groups are now supercharged.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section id="usecases" class="max-w-7xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold text-center grad mb-12">🔧 Popular Use‑cases</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="glass p-6 rounded-2xl"><h4 class="font-semibold mb-2">Community Admin</h4><p class="text-white/70">Auto‑moderation, rules, polls, and scheduled announcements.</p></div>
+      <div class="glass p-6 rounded-2xl"><h4 class="font-semibold mb-2">Creators</h4><p class="text-white/70">Auto‑deliver content, shorten links, watermark clips, manage DMs.</p></div>
+      <div class="glass p-6 rounded-2xl"><h4 class="font-semibold mb-2">Teams</h4><p class="text-white/70">Quick notes, task templates, status pings, and file utilities.</p></div>
+      <div class="glass p-6 rounded-2xl"><h4 class="font-semibold mb-2">Shops</h4><p class="text-white/70">Catalog answers, stock lookups, order confirmations, receipts.</p></div>
+      <div class="glass p-6 rounded-2xl"><h4 class="font-semibold mb-2">Students</h4><p class="text-white/70">Timetables, reminders, PDF tools, dictionary and translator.</p></div>
+      <div class="glass p-6 rounded-2xl"><h4 class="font-semibold mb-2">Fun & Games</h4><p class="text-white/70">Memes, quizzes, games, avatars, and party utilities.</p></div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS / GALLERY -->
+  <section id="screens" class="max-w-7xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold text-center grad mb-12">🖼️ Screens & UI</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="aspect-video rounded-2xl bg-navy-800 glass"></div>
+      <div class="aspect-video rounded-2xl bg-navy-800 glass"></div>
+      <div class="aspect-video rounded-2xl bg-navy-800 glass"></div>
+      <div class="aspect-video rounded-2xl bg-navy-800 glass"></div>
+      <div class="aspect-video rounded-2xl bg-navy-800 glass"></div>
+      <div class="aspect-video rounded-2xl bg-navy-800 glass"></div>
+    </div>
+  </section>
+
+  <!-- PAIR SECTION -->
+  <section id="pair" class="max-w-7xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold grad text-center mb-4">🔗 Generate WhatsApp Session</h2>
+    <p class="text-center text-white/70 mb-8">Click below to open the official SANIJA‑MD pairing portal in‑page. The QR will auto‑refresh.</p>
+    <div class="flex justify-center gap-4">
+      <button id="openEmbed" class="px-6 py-3 bg-brand-500 hover:bg-brand-600 rounded-xl font-semibold shadow-glow transition">Open Pair Portal</button>
+      <button id="closeEmbed" class="px-6 py-3 bg-white/10 hover:bg-white/15 rounded-xl border border-white/10">Hide</button>
+    </div>
+    <div id="pairEmbedWrap" class="hidden mt-8 max-w-4xl mx-auto border border-white/10 rounded-2xl overflow-hidden">
+      <iframe id="pairEmbed" src="" width="100%" height="560" class="border-0"></iframe>
+    </div>
+    <p class="text-center text-white/50 text-xs mt-3">If the QR expires, it will refresh automatically every 25s.</p>
+  </section>
+
+  <!-- DEPLOY -->
+  <section id="deploy" class="max-w-7xl mx-auto px-4 py-20">
+    <div class="glass rounded-3xl p-10 shadow-glow">
+      <h2 class="text-4xl font-bold grad mb-4">🚀 Deploy in Minutes</h2>
+      <p class="text-white/70 mb-6">Host the bot on your favorite platform. Keep the session alive with a simple worker or cron.</p>
+      <div class="flex flex-wrap gap-3">
+        <a class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 font-semibold" href="#pair">Pair Now</a>
+        <a class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10" href="#faq">Read FAQ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-7xl mx-auto px-4 py-20">
+    <h2 class="text-4xl font-bold text-center grad mb-12">❓ Frequently Asked Questions</h2>
+    <div class="space-y-4 max-w-3xl mx-auto" id="faqList">
+      <div class="glass rounded-2xl overflow-hidden">
+        <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center">How do I pair my WhatsApp?<span>＋</span></button>
+        <div class="px-5 pb-5 hidden text-white/70">Click <em>Open Pair Portal</em> and scan the QR with WhatsApp → Linked devices.</div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden">
+        <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center">Is my data secure?<span>＋</span></button>
+        <div class="px-5 pb-5 hidden text-white/70">Your session is only used to connect the bot to your account. Keep it private.</div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden">
+        <button class="w-full text-left px-5 py-4 font-semibold flex justify-between items-center">Does it run 24/7?<span>＋</span></button>
+        <div class="px-5 pb-5 hidden text-white/70">Yes, deploy to a host and add a simple keep‑alive. Re‑pair anytime if needed.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENTS -->
+  <section id="comments" class="max-w-7xl mx-auto px-4 py-20 border-t border-white/10 bg-navy-900">
+    <div class="text-center mb-8">
+      <h2 class="text-4xl font-bold text-blue-400">💬 User Comments</h2>
+      <p class="text-white/70 mt-2">Share your experience with SANIJA‑MD. Name is required.</p>
+    </div>
+    <div class="max-w-3xl mx-auto space-y-6">
+      <form id="commentForm" class="flex flex-col gap-3 bg-navy-850 p-6 rounded-2xl border border-white/10">
+        <div class="grid sm:grid-cols-2 gap-3">
+          <input type="text" id="nameInput" placeholder="Your Name" required class="px-4 py-3 rounded-lg bg-navy-800 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+          <input type="text" id="titleInput" placeholder="Title (optional)" class="px-4 py-3 rounded-lg bg-navy-800 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+        </div>
+        <textarea id="commentInput" placeholder="Your Comment" required class="px-4 py-3 rounded-lg bg-navy-800 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-brand-500" rows="4"></textarea>
+        <button type="submit" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-xl font-semibold shadow-glow transition">Publish Comment</button>
+      </form>
+      <div id="commentList" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/10 py-8 text-center text-white/50 text-sm">© <span id="year"></span> SANIJA‑MD. Built with ❤️</footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // THREE.JS – compact rotating phone used in HERO and a wide scene below
+    function makePhoneScene(holder){
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, holder.clientWidth/holder.clientHeight, 0.1, 100);
+      camera.position.set(0,1,4);
+      const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+      renderer.setSize(holder.clientWidth, holder.clientHeight);
+      holder.innerHTML='';
+      holder.appendChild(renderer.domElement);
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true; controls.enableZoom=false;
+
+      // phone body
+      const body = new THREE.Mesh(
+        new THREE.BoxGeometry(1.05,2.05,0.12),
+        new THREE.MeshStandardMaterial({ color:0x214488, metalness:.7, roughness:.35 })
+      );
+      scene.add(body);
+      // screen
+      const screen = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.95,1.95),
+        new THREE.MeshStandardMaterial({ color:0x0a1124, emissive:0x1a76ff, emissiveIntensity:0.25 })
+      );
+      screen.position.z = 0.065;
+      scene.add(screen);
+      // ambient glow
+      const a = new THREE.AmbientLight(0xffffff,.55); scene.add(a);
+      const d = new THREE.DirectionalLight(0xffffff,1); d.position.set(5,8,6); scene.add(d);
+
+      function tick(){
+        requestAnimationFrame(tick);
+        body.rotation.y += 0.006;
+        screen.rotation.y += 0.006;
+        controls.update();
+        renderer.render(scene,camera);
+      }
+      tick();
+      window.addEventListener('resize',()=>{
+        const {clientWidth,clientHeight}=holder; renderer.setSize(clientWidth,clientHeight); camera.aspect=clientWidth/clientHeight; camera.updateProjectionMatrix();
+      });
+    }
+    const heroThree = document.getElementById('threeContainer');
+    const wideThree = document.getElementById('threeCanvasWide');
+    makePhoneScene(heroThree);
+    makePhoneScene(wideThree);
+
+    // PAIR IFRAME + auto refresh
+    const openBtn = document.getElementById('openEmbed');
+    const closeBtn = document.getElementById('closeEmbed');
+    const wrap = document.getElementById('pairEmbedWrap');
+    const iframe = document.getElementById('pairEmbed');
+    let refreshTimer = null;
+
+    function startPair(){
+      wrap.classList.remove('hidden');
+      iframe.src = 'https://residential-jannelle-sanija123d-445b37ee.koyeb.app/pair';
+      if(refreshTimer) clearInterval(refreshTimer);
+      refreshTimer = setInterval(()=>{ iframe.contentWindow?.location.reload(); }, 25000);
+    }
+    function stopPair(){
+      wrap.classList.add('hidden');
+      if(refreshTimer) clearInterval(refreshTimer);
+      iframe.src = '';
+    }
+    openBtn.addEventListener('click', startPair);
+    closeBtn.addEventListener('click', stopPair);
+
+    // FAQ accordion
+    document.querySelectorAll('#faqList > div > button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const panel = btn.nextElementSibling; panel.classList.toggle('hidden');
+      });
+    });
+
+    // TESTIMONIALS – simple auto scroll
+    const track = document.getElementById('testimonialTrack');
+    if(track){
+      let x=0; setInterval(()=>{ x=(x+1)%3; track.style.transform = `translateX(-${x*100}%)`; }, 3500);
+    }
+
+    // COMMENTS with localStorage
+    const commentForm = document.getElementById('commentForm');
+    const nameInput = document.getElementById('nameInput');
+    const titleInput = document.getElementById('titleInput');
+    const commentInput = document.getElementById('commentInput');
+    const commentList = document.getElementById('commentList');
+
+    function esc(str){ return str.replace(/[&<>"']/g, s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[s])); }
+
+    function loadComments(){
+      const items = JSON.parse(localStorage.getItem('sanija_comments')||'[]');
+      commentList.innerHTML = items.map(c=>{
+        const initials = esc(c.name).slice(0,1).toUpperCase();
+        const when = new Date(c.time).toLocaleString();
+        return `
+          <div class="glass p-4 rounded-2xl">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-brand-500/20 grid place-items-center text-brand-400 font-bold">${initials}</div>
+              <div>
+                <p class="font-semibold">${esc(c.name)} <span class="text-white/50 text-xs">• ${when}</span></p>
+                ${c.title?`<p class="text-white/60 text-sm">${esc(c.title)}</p>`:''}
+              </div>
+            </div>
+            <p class="mt-3 text-white/90">${esc(c.text)}</p>
+          </div>`
+      }).join('');
+    }
+
+    commentForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      const name = nameInput.value.trim();
+      const text = commentInput.value.trim();
+      const title = titleInput.value.trim();
+      if(!name || !text) return;
+      const items = JSON.parse(localStorage.getItem('sanija_comments')||'[]');
+      items.unshift({ name, title, text, time: Date.now() });
+      localStorage.setItem('sanija_comments', JSON.stringify(items));
+      nameInput.value=''; commentInput.value=''; titleInput.value='';
+      loadComments();
+    });
+    loadComments();
+  </script>
+</body>
+</html>
